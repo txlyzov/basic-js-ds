@@ -1,6 +1,6 @@
 const { NotImplementedError } = require('../extensions/index.js');
 
-// const { ListNode } = require('../extensions/list-node.js');
+const { ListNode } = require('../extensions/list-node.js');
 
 /**
  * Given a singly linked list of integers l and an integer k,
@@ -22,9 +22,43 @@ const { NotImplementedError } = require('../extensions/index.js');
  *   }
  * }
  */
-function removeKFromList(/* l, k */) {
-  throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
+function removeKFromList(l, k/* l, k */) {
+  
+  while (l.value === k) {
+    l = l.next;
+  }
+  let virtualHead = l;
+  
+  // while (virtualHead!== null) {
+  //   if ((virtualHead.next) && (virtualHead.next.value === k)){
+  //     if(virtualHead.next.next){
+  //       virtualHead.next = virtualHead.next.next;
+  //       virtualHead = virtualHead.next;
+  //     } else {
+  //       virtualHead.next = null;
+  //     }
+  //   } else {
+  //     virtualHead = virtualHead.next;
+  //   }
+  // }
+  while (virtualHead!== null) {
+    if ((virtualHead.next) && (virtualHead.next.value === k)){
+      if(virtualHead.next.next){
+        let virtualHead1 = virtualHead;
+        virtualHead = virtualHead.next;
+        while (virtualHead.value===k) {
+          virtualHead = virtualHead.next;
+        }
+        virtualHead1.next = virtualHead;
+      } else {
+        virtualHead.next = null;
+      }
+    } else {
+      virtualHead = virtualHead.next;
+    }
+  }
+
+  return l;
 }
 
 module.exports = {

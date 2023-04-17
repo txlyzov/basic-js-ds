@@ -1,6 +1,6 @@
 const { NotImplementedError } = require('../extensions/index.js');
 
-// const { ListNode } = require('../extensions/list-node.js');
+const { ListNode } = require('../extensions/list-node.js');
 
 /**
  * Implement the Queue with a given interface via linked list (use ListNode extension above).
@@ -14,20 +14,56 @@ const { NotImplementedError } = require('../extensions/index.js');
  * queue.getUnderlyingList() // returns { value: 3, next: null }
  */
 class Queue {
-
-  getUnderlyingList() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+  constructor(){
+    this.memory = null;
   }
 
-  enqueue(/* value */) {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+  getUnderlyingList() {
+    // throw new NotImplementedError('Not implemented');
+    // // remove line with error and write your code here
+    // if(this.memory){
+    //   let last = this.memory;
+    //   while (true) {
+    //     // last = this.memory.next;
+    //     // console.log(last);
+    //     if(!last.next){
+    //       return last;
+    //     } else {
+    //       last = last.next;
+    //     }
+    //   }
+    // }
+    return this.memory
+  }
+
+  enqueue(value/* value */) {
+    const element = new ListNode(value)
+    if (!this.memory){
+      this.memory = element;
+    } else {
+      let last = this.memory;
+      while (true) {
+        if(!last.next){
+          last.next = element;
+          break
+        } else {
+          last = last.next;
+        }
+      }
+    }
+    // throw new NotImplementedError('Not implemented');
+    // // remove line with error and write your code here
+    // element.next = element;
+    // this.memory
   }
 
   dequeue() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+    // throw new NotImplementedError('Not implemented');
+    // // remove line with error and write your code here
+    const value = this.memory.value; 
+    this.memory = this.memory.next;
+    return value
+
   }
 }
 
